@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>LD1FINALS_2D_PARADAS</title>
+	<link rel="stylesheet" href="styles.css">
+
+ <style type="text/css">
+        /* Global Styles */
+body {
+
+            margin: 0;
+            font-family: Arial,sans-serif; 
+            background: url('https://images-na.ssl-images-amazon.com/images/I/71WIlFKtXCL.jpg');
+            background-size: 100% 100%;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        
+    
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+header .logo h1 {
+    margin: 0;
+    font-size: 2.5em;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2em;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Hero Section */
+.hero {
+    position: relative;
+    background-image: url('vape logo.jpg'); /* Replace with actual image */
+    background-size: cover;
+    color: white;
+    text-align: center;
+    padding: 100px 20px;
+    min-height: 400px;
+}+
+
+.hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);  /* Semi-transparent overlay */
+    z-index: -1;
+}
+
+.hero h2 {
+    font-size: 3em;
+}
+
+.hero p {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+}
+
+.hero button {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2em;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.hero button:hover {
+    background-color: #c0392b;
+}
+
+/* About Us Section */
+.about {
+    background-color: #fff;
+    padding: 50px 20px;
+    text-align: center;
+}
+
+.about h2 {
+    font-size: 2.3em;
+    margin-bottom: 20px;
+}
+
+.about p {
+    font-size: 1.0em;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header .logo h1 {
+        font-size: 2em;
+    }
+
+    nav ul li {
+        display: block;
+        margin: 10px 0;
+    }
+
+    .hero h2 {
+        font-size: 2.5em;
+    }
+
+    .hero p {
+        font-size: 1.2em;
+    }
+
+    .hero button {
+        padding: 12px 25px;
+        font-size: 1.1em;
+    }
+}
+/* Footer */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 50px;
+    position: fixed; /* Changed to relative for better content flow */
+    bottom: 0;
+    width: 100%;
+}
+
+	.container {
+            width: 400px;
+            margin: 200px auto;
+            padding: 50px;
+            background-color: transparent;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        input {
+            width: 90%;
+            padding: 15px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+        }
+        button {
+            background-color: rgba(94, 92, 100, 0.9);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-left: 150px;
+            
+        }
+        button:hover {
+            background-color: rgba(202, 201, 205, 0.9);
+
+
+        }
+        #message {
+            color: red;
+            margin-top: 10px;
+        }
+
+
+    </style>
+
+</head>
+<body>
+	 <header>
+        <div class="logo">
+            <h1>Paradas Vape Shop</h1>
+        </div>
+        
+    </header>
+
+     <!-- log in form -->
+    <main>
+    <div class="container">
+        <h2 style="margin-left: 150px; color: black;">Log In</h2>
+        <input type="text" id="username" placeholder="Username" required>
+        <input type="password" id="password" placeholder="Password" required>
+        <button onclick="validateLogin()">Login</button>
+        <p id="message"></p>
+    </div>
+</main>
+
+ <script>
+        
+    let attempts = 0;
+    let lockout = false;
+    const correctUsername = "Paradas";
+    const correctPassword = "12345";
+
+    function validateLogin() {
+        if (lockout) return;
+        
+        let username = document.getElementById("username").value;
+        let password = document.getElementById("password").value;
+        let message = document.getElementById("message");
+        
+        if (username === correctUsername && password === correctPassword) {
+            message.style.color = "red";
+            message.innerText = "Login successful!";
+            window.location.href = "file:///C:/PARADAS/paradas6/paradas6/html.html"
+            
+        } else {
+            attempts++;
+            if (attempts >= 2) {
+                lockout = true;
+                message.innerText = "Too many failed attempts. Please wait 10 seconds.";
+                setTimeout(() => {
+                    attempts = 0;
+                    lockout = false;
+                    message.innerText = "You can try again now.";
+                    document.getElementById("password").value = "";
+                }, 10000);
+            } else {
+                message.innerText = "Incorrect username or password. Try again.";
+            }
+        }
+    }
+
+    </script>
+
+    
+    <footer>
+        <p>&copy; Paradas Vape Shop.</p>
+    </footer>
+
+</body>
+</html>
